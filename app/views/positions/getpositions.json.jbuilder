@@ -1,0 +1,1 @@
+json.positions @positions.to_json(:except => ['created_at', 'updated_at'])
