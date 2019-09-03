@@ -54,6 +54,25 @@ class UsersController < ApplicationController
   end
 
 
+    def getposition
+    @user = nil
+    User.all.each do |usu|
+      if usu.token == params[:token]
+        @user = usu
+      end
+    end
+    if @user != nil
+      @users = User.find(params[:id])
+    else
+      respond_to do |format|
+        @users = User.new()
+        format.html { render :show }
+        format.json { render json: @users.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def newuser
     
     @user = nil
